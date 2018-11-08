@@ -23,8 +23,6 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     lateinit var shake : MediaPlayer
     lateinit var dices : Array<MediaPlayer>
-    lateinit var matrix : Matrix
-    var degree = 15f
     private val sensorListener: SensorEventListener? = object : SensorEventListener {
         override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -44,19 +42,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun shakeIt() {
-//        shake?.start()
         dices.get(Random().nextInt(5)).start()
-//        cup.scaleType = ImageView.ScaleType.MATRIX
-//        matrix.postRotate(degree)
-////        degree = if (degree == 15f) 0f else 15f
-////        cup.imageMatrix = matrix
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        matrix = Matrix()
         shake = MediaPlayer.create(this, R.raw.shake_dice)
         dices = arrayOf(MediaPlayer.create(this, R.raw.dice1),
             MediaPlayer.create(this, R.raw.dice2),
